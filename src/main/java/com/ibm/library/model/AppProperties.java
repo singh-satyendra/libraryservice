@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties
 //@PropertySource("classpath:application.properties")
 //Last file (myapplication.properties) has higher priority than first (myapplication2.properties). But if application.properties is in classpath then application.properties will have the highest priority
-@PropertySource(value = {"file:/config/myapplication2.properties", "file:/config/myapplication.properties"})
+//@PropertySource(value = {"file:/config/myapplication2.properties", "file:/config/myapplication.properties"})
 public class AppProperties {
 		
 	String name;
