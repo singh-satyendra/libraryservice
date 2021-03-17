@@ -1,12 +1,13 @@
 package com.ibm.library.service;
 
 import java.util.Collection;
-import java.util.List;
-
+import com.ibm.library.model.AppProperties;
 import com.ibm.library.model.BookData;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Service
+//@RefreshScope
 public class LibraryServiceImpl implements LibraryService {
 	
 	private final Logger logger = LoggerFactory.getLogger(LibraryServiceImpl.class);
-	@Value("${demo.message}")
-	private String hellowMessageFromProperty;
+	
+	@Autowired
+	AppProperties appProperties;
+	
+	
+	//@Value("${demo.message}")
+	//private String hellowMessageFromProperty;
 	
 	@Autowired
 	private BookInventoryEndpoint bookInventoryEndpoint;
@@ -77,8 +84,8 @@ public class LibraryServiceImpl implements LibraryService {
 
 	@Override
 	public String demo() {
-		logger.info("Entered LibraryServiceImpl.demo().  demoPropertySomeProperty=" + hellowMessageFromProperty);
-		String demoData = "This is a demo message from property." + hellowMessageFromProperty;
+		logger.info("Entered LibraryServiceImpl.demo().  demoPropertySomeProperty {} ",appProperties.getMessage());
+		String demoData = "This is a demo message from property." + appProperties.getMessage() +" : "+appProperties.getName();
 		logger.info("Leaving LibraryServiceImpl.demo().  demoData=" + demoData);
 		return demoData;
 	}

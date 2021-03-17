@@ -6,7 +6,6 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 //import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
-
 import io.jaegertracing.Configuration;
 import io.jaegertracing.Configuration.ReporterConfiguration;
 import io.jaegertracing.Configuration.SamplerConfiguration;
@@ -36,5 +35,4 @@ public class LibraryApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
-
 }
